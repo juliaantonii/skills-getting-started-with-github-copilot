@@ -24,10 +24,21 @@ document.addEventListener("DOMContentLoaded", () => {
         let participantsHtml = "";
         if (details.participants.length > 0) {
           participantsHtml = `
-            <p><strong>Participantes inscritos:</strong></p>
-            <ul>
-              ${details.participants.map(email => `<li>${email}</li>`).join("")}
-            </ul>
+            <div class="participants-section">
+              <p><strong>Participantes inscritos:</strong></p>
+              <ul class="participants-list">
+                ${details.participants
+                  .map(
+                    email => `
+                      <li class="participant-item">
+                        <span class="participant-avatar">${email[0].toUpperCase()}</span>
+                        <span class="participant-email">${email}</span>
+                      </li>
+                    `
+                  )
+                  .join("")}
+              </ul>
+            </div>
           `;
         } else {
           participantsHtml = `<p><em>Nenhum participante inscrito ainda.</em></p>`;
